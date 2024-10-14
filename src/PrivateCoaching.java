@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+//DEFINITION: This class consist a method to handle private coaching
+//METHODS: addPrivateCoaching () | costPrivateCoaching ()
+
 class PrivateCoaching {
 
 
@@ -8,8 +11,8 @@ class PrivateCoaching {
     DisplayInfo info = new DisplayInfo();
 
     //ATTRIBUTES
-    int usersNumPrivateCoach;
-    int costPrivateCoaching;
+    private int usersNumPrivateCoach;
+    private int costPrivateCoaching;
 
     //GETTERS
     public int getUsersNumPrivateCoach() {
@@ -21,9 +24,9 @@ class PrivateCoaching {
     }
 
 
-    // METHOD ADD PRIVATE COACHING
+    // Main method to add private coaching--can be called in Manager Class
     void addPrivateCoaching() {
-        info.privateCoaching(); //display infor
+        info.printPrivateCoaching(); //display infor
         boolean validInput = false;
         while (!validInput) {
             get.numOfPrivateCoaching(); // ask user
@@ -37,8 +40,12 @@ class PrivateCoaching {
             }
 
         }
-        costPrivateCoaching= (usersNumPrivateCoach * 4) * 9;
+        costPrivateCoaching();
         System.out.println();
+    }
+
+    void costPrivateCoaching () {
+            costPrivateCoaching=(usersNumPrivateCoach * 4) * 9;
     }
 
 }

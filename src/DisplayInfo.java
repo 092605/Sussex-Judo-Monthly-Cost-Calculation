@@ -1,7 +1,9 @@
 class DisplayInfo {
 
+    //DEFINITION: This class handles the display of information -- print only
+    //METHODS : trainingPlan() | weightCategory () | competitionDetails () | privateCoaching ()
 
-    void trainingPlan (){
+    void printTrainingPlan(){
         System.out.print("--------------------");
         System.out.print("TRAINING PLAN DETAILS");
         System.out.println("--------------------");
@@ -18,7 +20,7 @@ class DisplayInfo {
         System.out.println();
     }
 
-    void weightCategory (){
+    void printWeightCategory(){
         System.out.println();
         System.out.print("--------------------");
         System.out.print("Weight Category (maximum)");
@@ -39,7 +41,7 @@ class DisplayInfo {
         System.out.println();
     }
 
-    void competitionDetails () {
+    void printCompetitionDetails() {
         System.out.println();
         System.out.print("--------------------");
         System.out.print("Enter Competition: $22.00");
@@ -52,7 +54,7 @@ class DisplayInfo {
         System.out.println();
     }
 
-    void privateCoaching (){
+    void printPrivateCoaching(){
         System.out.println();
         System.out.print("--------------------");
         System.out.print("Enter Private Coaching: $9.00");

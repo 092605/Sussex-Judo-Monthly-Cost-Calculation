@@ -1,12 +1,13 @@
+
+//DEFINITION: Handle the weight category & competition weight category
+// METHODS: identifyAthleteWeightCategory () | compareWeightCategory ()
+
 class WeightCategory {
-    private Athlete athlete;
+    private final Athlete athlete;
 
     public WeightCategory(Athlete athlete) {
         this.athlete = athlete; // Use the provided athlete instance
     }
-
-    String usersWeightCategory;
-    int weightComparison;
 
 
     //IDENTIFY ATHLETE CATEGORY BASE ON INPUTTED WEIGHT

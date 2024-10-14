@@ -1,5 +1,9 @@
     import java.util.Scanner;
 
+
+    //DEFINITION : This is a class which gather methods from other class to create a single method
+    //             Can be called when the user wants to add competition
+
     //METHODS:
     //addCompetition () : Manage the adding of competition. User choose competition weight category, number of competitions, & costing
     // handleWeightChange () : a method where user can change competition weight category if it doesn't match with their current weight
@@ -7,6 +11,7 @@
 
     class EnterCompetition {
 
+        //OBJECTS NEEDED
         Scanner Input = new Scanner(System.in);
         InputValidation inputValidation = new InputValidation();
         DisplayInfo display = new DisplayInfo();
@@ -22,12 +27,11 @@
         private String userNameWeightCategory;
         private String usersNameCompetitionCategory;
 
-        //Attributes for valid input
-        String change;
-        int usersCW;
-        int comparison;
-        boolean changeCompetition;
-        double weight= athlete.getWeight();
+        //OTHER ATTRIBUTES
+        String changeCompetitionWeightCategory; // user's decision to change (yes/no)
+        int usersCW; //Competition Weight Category (stores 1-6)
+        int comparison; // Identify WITHIN LIMIT | GAIN | LOSE (stores 1-3)
+        boolean changeCompetition; // controls the loop
 
         //GETTERS
 
@@ -52,10 +56,11 @@
         }
 
 
+        //Main method to add competition -- can be called in Manager Class
         void addCompetition() {
             get = new WeightCategory(athlete);
-            display.competitionDetails(); // Display competition details
-            display.weightCategory(); // Display weight category
+            display.printCompetitionDetails(); // Display competition details
+            display.printWeightCategory(); // Display weight category
 
             changeCompetition = true;
             while (changeCompetition) {
@@ -103,13 +108,13 @@
             boolean validDecisionChangeCompetitionCategory = false;
             while (!validDecisionChangeCompetitionCategory) {
                 System.out.print("Do you want to change competition weight category? (yes/no): ");
-                change = Input.nextLine();
+                changeCompetitionWeightCategory = Input.nextLine();
 
-                if (change.equalsIgnoreCase("yes")) {
+                if (changeCompetitionWeightCategory.equalsIgnoreCase("yes")) {
                     // User wants to change the weight category
                     validDecisionChangeCompetitionCategory = true;
                     changeCompetition=true; //prompt user to change competition weight category
-                } else if (change.equalsIgnoreCase("no")) {
+                } else if (changeCompetitionWeightCategory.equalsIgnoreCase("no")) {
                     //users chosen competition weight category will be accepted but will tale a note to gain weight
                     usersNameCompetitionCategory = "(" + getNameCompetitionCategory(usersCW) + ")" + " Need to " + action + " weight before competition starts";
                     System.out.println("----------------------------------------");

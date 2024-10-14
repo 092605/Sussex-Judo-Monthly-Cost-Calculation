@@ -1,28 +1,33 @@
 import java.util.Scanner;
 
+//DEFINITION: This class gathers every single method in the package.
+//            Create a single method that create an application (called in Main class)
+
+//METHODS: registrationAthlete () | displayPaymentDetails () | displayAllDetails ()
+
 class Manager extends DisplayInfo {
     Scanner Input = new Scanner(System.in);
     Athlete athlete = new Athlete();
     TrainingPlan register = new TrainingPlan();
     PrivateCoaching avail = new PrivateCoaching();
     EnterCompetition enter = new EnterCompetition();
+    WeightCategory get= new WeightCategory(athlete); // mainly used to get the Athlete weight category (name)
 
 
-
-
-    int choice1;
-    int choice2;
-    boolean registerNewAthlete;
+    int choice1; //options in Home Page Phase 1
+    int choice2; //option ins Home Page Phase 2
+    boolean registerNewAthlete; //controls registration loop
     String decisionCompetition;
-    String decisionPrivateCoaching;
     String changeTrainingPlan;
+    String athleteNameWeightCategory;
 
 
     void registrationAthlete() {
         registerNewAthlete = true; // Control the registration loop
         while (registerNewAthlete) { //while register new athlete is true
 
-            //Welcome Message
+            //Welcome Messages
+            System.out.println();
             System.out.print("--------------------");
             System.out.print("Welcome to North Sussex Judo Training ");
             System.out.println("--------------------");
@@ -53,6 +58,8 @@ class Manager extends DisplayInfo {
                             } else if (changeTrainingPlan.equalsIgnoreCase("no")) {
                                 validInputChangeTP = true;
                                 change = false;
+                                 athleteNameWeightCategory=get.identifyAthleteWeightCategory(); //gets the athlete name weight category in weight category class and use the details in existing athlete
+
                             } else {
                                 System.out.println("Invalid input, please choose (yes/no) only...");
                             }
@@ -99,7 +106,7 @@ class Manager extends DisplayInfo {
                     System.out.println();
 
                     if (choice1 == 1) {
-                       athleteDetails();
+                       displayAllDetails();
                         validInput1 = true;
                     } else if (choice1 == 2) {
                         validInput1 = true;
@@ -162,7 +169,7 @@ class Manager extends DisplayInfo {
         System.out.printf("Cost for upcoming competitions: $%.2f %n", (double) enter.getPendingCostCompetition());
     }
 
-    void athleteDetails() {
+    void displayAllDetails() {
         System.out.print("--------------------");
         System.out.print("ALL DETAILS");
         System.out.println("--------------------");
@@ -170,12 +177,11 @@ class Manager extends DisplayInfo {
         System.out.println("          --Athlete Details--");
         System.out.println();
         System.out.println("Athlete Name:----------------------------" + athlete.getName());
-        System.out.println("Weight Category:-------------------------- " + enter.getUserWeightCategory() + " (" + athlete.getWeight() + "kg" + ")");
+        System.out.println("Weight Category:-------------------------- " + ((enter.getUserWeightCategory()==null) ?athleteNameWeightCategory : enter.getUserWeightCategory()  ) + " (" + athlete.getWeight() + "kg" + ")");
         System.out.println("Date Registered:-------------------------- " + athlete.getDate());
-        System.out.println("Training Plan Expiration Date:------------ " + athlete.getExpirationDate());
-        System.out.println("Training Plan:---------------------------- " + register.getNameTrainingPlan());
-        System.out.println("Competition Weight Category:-------------- " + enter.getUsersCompetitionCategory());
-        System.out.println("Number of competition this month:--------- " + (enter.getUsersNumCompetition() > 0 ? 1 : 0));
+        System.out.println("Training Plan:---------------------------- " + (register.getNameTrainingPlan()) + "(" + register.getUsersNumberOfSession() + " session" + " )");
+        System.out.println("Competition Weight Category:-------------- " + ((enter.getUsersCompetitionCategory()==null) ? "No competition weight category" : enter.getUsersCompetitionCategory()));
+        System.out.println("Number of competition this month:--------- " + ((enter.getUsersNumCompetition() > 0 ? (1 +" (2nd Saturday of the Month)") : 0)) );
         System.out.println("Upcoming Number of Competition:----------- " + ((enter.getUsersNumCompetition()>1) ? (enter.getUsersNumCompetition()-1) : 0));
         System.out.println("Number of hours for Private Coaching:----- " + avail.getUsersNumPrivateCoach() * 4);
         System.out.println();

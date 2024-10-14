@@ -1,8 +1,15 @@
 
 import java.util.Scanner;
 
-//METHODS:
-//getValidName | getValidWeight | getValidMonth |
+
+//DEFINITION: This class consists of user input validation methods.
+
+//METHODS---
+
+//SETTERS: setValidName () | setValidWeight () | setValidDate ()
+//SETTERS VALIDATION-- isValidMonth () | isValidName () | getDaysInMonth () |
+// DECISIONS: askTrainingPlan () | chooseCompetitionWeightCategory () | decisionRegisterAthlete () |
+//OTHER METHODS : numberOfCompetition () | numberOfPrivateCoaching ()
 
 class InputValidation {
     Scanner input= new Scanner(System.in);
@@ -18,7 +25,6 @@ class InputValidation {
     int hoursOfPrivateCoaching;
 
 
-
     //PERSONAL DETAILS
     private String validName;
     private Double validWeight;
@@ -28,8 +34,7 @@ class InputValidation {
 
 
 
-    //private attribute getters
-
+    //GETTERS | PERSONAL DETAILS
     public String getValidName() {
         return validName;
     }
@@ -37,9 +42,43 @@ class InputValidation {
     public Double getValidWeight() {
         return validWeight;
     }
+    public String getValidMonth() {
+        return validMonth;
+    }
+
+    public int getValidDay() {
+        return validDay;
+    }
+
+    public int getValidYear() {
+        return validYear;
+    }
 
 
-    //USER DETAILS
+    //GETTERS | ATTRIBUTES -- stores the valid input decisions
+    public String getAnswerRegisterAthlete() {
+        return answerRegisterAthlete;
+    }
+
+    public int getTrainingPlan() {
+        return trainingPlan;
+    }
+
+    public int getCompetitionWeightCategory() {
+        return competitionWeightCategory;
+    }
+
+
+    public int getNumberOfCompetition() {
+        return numberOfCompetition;
+    }
+
+    public int getHoursOfPrivateCoaching() {
+        return hoursOfPrivateCoaching;
+    }
+
+
+    //USER DETAILS CHECK VALIDATION METHODS
 
     // CHECK NAME
     void setValidName() {
@@ -50,13 +89,12 @@ class InputValidation {
                 break;
             } else {
                 System.out.println("Invalid name. Please enter a name without numbers.");
-                continue;
             }
         }
     }
 
 
-    //WEIGHT
+    //CHECK WEIGHT
     void setValidWeight() {
         while (true) {
             System.out.print("Enter your weight (kg): ");
@@ -85,7 +123,7 @@ class InputValidation {
         //MONTH
         while (true) {
             System.out.print("Enter month: ");
-            validMonth = input.nextLine().trim().toLowerCase();
+            validMonth = input.nextLine().trim().toLowerCase(); // Read and format the input (remove whitespace, convert to lowercase)
             if (isValidMonth(validMonth)) {
                 break; // Valid month entered
             } else {
@@ -232,47 +270,7 @@ class InputValidation {
     }
 
 
-    //Getter of plans
-    public String getValidMonth() {
-        return validMonth;
-    }
 
-    public int getValidDay() {
-        return validDay;
-    }
-
-    public int getValidYear() {
-        return validYear;
-    }
-
-    public String getAnswerRegisterAthlete() {
-        return answerRegisterAthlete;
-    }
-
-    public int getTrainingPlan() {
-        return trainingPlan;
-    }
-
-    public String getDecisionEnterCompetition() {
-        return decisionEnterCompetition;
-    }
-
-    public int getCompetitionWeightCategory() {
-        return competitionWeightCategory;
-    }
-
-
-    public String getDecisionPrivateCoaching() {
-        return decisionPrivateCoaching;
-    }
-
-    public int getNumberOfCompetition() {
-        return numberOfCompetition;
-    }
-
-    public int getHoursOfPrivateCoaching() {
-        return hoursOfPrivateCoaching;
-    }
 
 
 }
