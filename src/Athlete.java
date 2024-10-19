@@ -1,16 +1,16 @@
-import java.util.Scanner;
+
 
 // DEFINITION: This class GATHERS the user input validation method from (Input Validation Class) into one method
 //             This handles the input of the user (name, weight, date).
 //             It is also the one who controls the loop when user wants to register an Athlete.
 
-//METHOD : registerAthlete () --
+//METHOD : athlete () --
 
 public class Athlete extends InputValidation {
-    Scanner input = new Scanner(System.in);
+
+    private static int numberOfAthlete = 6;
 
     //IMPORTANT ATTRIBUTES --user details
-    private static int numberOfAthlete = 6;
     private String name;
     private double weight;
     private String month;
@@ -40,10 +40,8 @@ public class Athlete extends InputValidation {
         return date;
     }
 
-
-
-    //method to register new athlete
-    void registerAthlete() {
+    //method to input personal details of an Athlete (name, weight, date registered)
+    public void athlete() {
             System.out.println();
             System.out.print("--------------------");
             System.out.print("ATHLETE REGISTRAR");
@@ -55,7 +53,7 @@ public class Athlete extends InputValidation {
             if (decisionRegisterAthlete.equalsIgnoreCase("yes")) {
                 numberOfAthlete++;
 
-                //-- these methods below are in InputValidation Class
+                //
 
                 // Input for name
                 setValidName();
@@ -70,6 +68,7 @@ public class Athlete extends InputValidation {
                 month= getValidMonth();
                 day= getValidDay();
                 year= getValidYear();
+
 
             } else  {
                 System.out.println("Okay! Hope to have you registered next time!");

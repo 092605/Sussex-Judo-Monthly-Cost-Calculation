@@ -4,7 +4,7 @@ class TrainingPlan {
     //METHODS: costTrainingPlan () | numberOfSession () | addTrainingPlan ()
 
     DisplayInfo info = new DisplayInfo();
-    InputValidation inputValidation = new InputValidation();
+    InputValidation valid = new InputValidation();
 
     //ATTRIBUTES
     private int userTrainingPlan; // stores (1-3)
@@ -38,14 +38,14 @@ class TrainingPlan {
     //METHODS
 
     // method to calculate the cost of athletes chosen training plan
-    void costTrainingPlan() {
-        if(userTrainingPlan ==1)
-            this.costTrainingPlan =25*4;
-        else if(userTrainingPlan ==2)
-            this.costTrainingPlan =30*4;
-        else
-            this.costTrainingPlan =35*4;
-    }
+        void costTrainingPlan() {
+            if(userTrainingPlan ==1)
+                this.costTrainingPlan =25*4;
+            else if(userTrainingPlan ==2)
+                this.costTrainingPlan =30*4;
+            else
+                this.costTrainingPlan =35*4;
+        }
 
     //number of session
   void numberOfSessions() {
@@ -62,9 +62,8 @@ class TrainingPlan {
     void addTrainingPlan() {
 
         info.printTrainingPlan(); //display training plan info
-        inputValidation.askTrainingPLan(); // user choose a training plan
-        userTrainingPlan = inputValidation.getTrainingPlan(); // store the training plan
-
+        valid.askTrainingPLan(); // user choose a training plan
+        userTrainingPlan = valid.getTrainingPlan(); // store the training plan
         numberOfSessions();
         costTrainingPlan();
     }

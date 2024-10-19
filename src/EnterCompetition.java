@@ -9,15 +9,14 @@
     // handleWeightChange () : a method where user can change competition weight category if it doesn't match with their current weight
     //getNameCompetitionCategory () : method to get the name of the chosen competition weight category
 
-    class EnterCompetition {
+
+    class EnterCompetition extends InputValidation {
 
         //OBJECTS NEEDED
         Scanner Input = new Scanner(System.in);
-        InputValidation inputValidation = new InputValidation();
         DisplayInfo display = new DisplayInfo();
         TrainingPlan getTrainingPlan= new TrainingPlan();
         Athlete athlete= new Athlete();
-        private WeightCategory get;
 
 
         //MAIN ATTRIBUTES
@@ -56,16 +55,17 @@
         }
 
 
-        //Main method to add competition -- can be called in Manager Class
-        void addCompetition() {
-            get = new WeightCategory(athlete);
+        //Method to add competition -- can be called in Manager Class
+        public void addCompetition() {
+            WeightCategory get = new WeightCategory(athlete);
             display.printCompetitionDetails(); // Display competition details
             display.printWeightCategory(); // Display weight category
 
+
             changeCompetition = true;
             while (changeCompetition) {
-                inputValidation.chooseCompetitionWeightCategory(); // User chooses a competition weight category
-                usersCW = inputValidation.getCompetitionWeightCategory(); // Store user competition weight category (numbers)
+                chooseCompetitionWeightCategory(); // User chooses a competition weight category
+                usersCW = getCompetitionWeightCategory(); // Store user competition weight category (numbers)
                 comparison = get.compare_Weight_Category(usersCW); // Comparing the user's category and chosen competition category
 
 
@@ -78,8 +78,8 @@
                         System.out.println("----------------------------------------");
                         System.out.println("Competition Weight Category Accepted!");
                         System.out.println("----------------------------------------");
-                        inputValidation.numOfCompetition(); // ask user for number of competition (0-no limit--but only 1 competition will be calculated in monthly cost, the rest will be upcoming and pending)
-                        usersNumCompetition = inputValidation.getNumberOfCompetition(); // store user number of competition
+                        numOfCompetition(); // ask user for number of competition (0-no limit--but only 1 competition will be calculated in monthly cost, the rest will be upcoming and pending)
+                        usersNumCompetition = getNumberOfCompetition(); // store user number of competition
                         changeCompetition = false; // exit loop for (change competition)
                         break;
 
@@ -96,9 +96,17 @@
 
             }
             // Calculate cost based on number of competitions
-            costCompetition = (usersNumCompetition > 0 ? 1 : 0) * 22; // if number of competition > 0, (costCompetition) will compute only 1 competition
-            pendingCostCompetition = (usersNumCompetition > 1 ? ((usersNumCompetition-1)*22) : 0); // this will compute the pending costs
+            costCompetition();
+            pendingCostCompetition();
+
             userNameWeightCategory = get.identifyAthleteWeightCategory();
+        }
+
+        private void costCompetition (){
+            costCompetition = (usersNumCompetition > 0 ? 1 : 0) * 22; // if number of competition > 0, (costCompetition) will compute only 1 competition
+        }
+        private void pendingCostCompetition () {
+            pendingCostCompetition = (usersNumCompetition > 1 ? ((usersNumCompetition-1)*22) : 0); // this will compute the pending costs
         }
 
         // Method to handle weight change prompts
@@ -120,8 +128,8 @@
                     System.out.println("----------------------------------------");
                     System.out.println("Competition Weight Category Accepted!");
                     System.out.println("----------------------------------------");
-                    inputValidation.numOfCompetition(); // the user will now proceed to input number of competition
-                    usersNumCompetition = inputValidation.getNumberOfCompetition();
+                    numOfCompetition(); // the user will now proceed to input number of competition
+                    usersNumCompetition = getNumberOfCompetition();
                     validDecisionChangeCompetitionCategory = true;
                     changeCompetition=false;
 
@@ -136,20 +144,14 @@
             if (getTrainingPlan.getUserTrainingPlan()==1) {
                 return "No Competition Category";
             } else {
-                switch (usersCW) {
-                    case 1:
-                        return "Flyweight";
-                    case 2:
-                        return "Lightweight";
-                    case 3:
-                        return "Light-Middleweight";
-                    case 4:
-                        return "Middleweight";
-                    case 5:
-                        return "Light-Heavyweight";
-                    default:
-                        return "Heavyweight";
-                }
+                return switch (usersCW) {
+                    case 1 -> "Flyweight";
+                    case 2 -> "Lightweight";
+                    case 3 -> "Light-Middleweight";
+                    case 4 -> "Middleweight";
+                    case 5 -> "Light-Heavyweight";
+                    default -> "Heavyweight";
+                };
             }
         }
     }

@@ -12,27 +12,27 @@ import java.util.Scanner;
 //OTHER METHODS : numberOfCompetition () | numberOfPrivateCoaching ()
 
 class InputValidation {
-    Scanner input= new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
 
     //ATTRIBUTES -- stores the valid input decisions
-    String answerRegisterAthlete;
-    String decisionEnterCompetition;
-    String decisionPrivateCoaching;
-    int trainingPlan;
-    int competitionWeightCategory;
-    int numberOfCompetition;
-    int hoursOfPrivateCoaching;
+    private String answerRegisterAthlete;
+    private String decisionChangeTrainingPlan;
+    private String decisionCompetition;
+    private int decisionOptionHomePage1;
+    private int decisionOptionHomePage2;
+    private int trainingPlan;
+    private int competitionWeightCategory;
+    private int numberOfCompetition;
+    private int hoursOfPrivateCoaching;
 
 
     //PERSONAL DETAILS
     private String validName;
     private Double validWeight;
-    String validMonth;
-    int validDay;
-    int validYear;
-
-
+    private String validMonth;
+    private int validDay;
+    private int validYear;
 
     //GETTERS | PERSONAL DETAILS
     public String getValidName() {
@@ -42,6 +42,7 @@ class InputValidation {
     public Double getValidWeight() {
         return validWeight;
     }
+
     public String getValidMonth() {
         return validMonth;
     }
@@ -54,10 +55,30 @@ class InputValidation {
         return validYear;
     }
 
+    public String getDate() {
+        return validMonth + " " + validDay + ", " + validYear;
+    }
+
 
     //GETTERS | ATTRIBUTES -- stores the valid input decisions
     public String getAnswerRegisterAthlete() {
         return answerRegisterAthlete;
+    }
+
+    public String getDecisionChangeTrainingPlan() {
+        return decisionChangeTrainingPlan;
+    }
+
+    public String getDecisionCompetition() {
+        return decisionCompetition;
+    }
+
+    public int getDecisionOptionHomePage1() {
+        return decisionOptionHomePage1;
+    }
+
+    public int getDecisionOptionHomePage2() {
+        return decisionOptionHomePage2;
     }
 
     public int getTrainingPlan() {
@@ -81,7 +102,7 @@ class InputValidation {
     //USER DETAILS CHECK VALIDATION METHODS
 
     // CHECK NAME
-    void setValidName() {
+    public void setValidName() {
         while (true) {
             System.out.print("Enter your name: ");
             validName = input.nextLine();
@@ -95,7 +116,7 @@ class InputValidation {
 
 
     //CHECK WEIGHT
-    void setValidWeight() {
+    public void setValidWeight() {
         while (true) {
             System.out.print("Enter your weight (kg): ");
 
@@ -118,7 +139,7 @@ class InputValidation {
     }
 
     //DATE
-     void setValidDate() {
+    public void setValidDate() {
 
         //MONTH
         while (true) {
@@ -167,50 +188,50 @@ class InputValidation {
         }
     }
 
-    // METHOD TO CHECK THE MONTH INPUT
-    private static boolean isValidMonth(String month) {
-        String[] validMonths = {
-                "january", "february", "march", "april", "may", "june",
-                "july", "august", "september", "october", "november", "december"
-        };
-        for (String validMonth : validMonths) {
-            if (validMonth.equals(month)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Method to get the number of days in a given month
-    private static int getDaysInMonth(String month) {
-        switch (month) {
-            case "january":
-            case "march":
-            case "may":
-            case "july":
-            case "august":
-            case "october":
-            case "december":
-                return 31;
-            case "april":
-            case "june":
-            case "september":
-            case "november":
-                return 30;
-            case "february":
-                return 28; // Ignoring leap years for simplicity
-            default:
-                return 0; // Invalid month
-        }
-    }
-
-    //VALID NAME
-    private static boolean isValidName(String name) {
-        return name != null && name.matches("[a-zA-Z ]+"); // Allow only letters and spaces
-    }
-
 
     //ASK TRAINING PLAN --VOID
+    void optionHomePage1() {
+        boolean validDecision = false;
+        while (!validDecision) {
+            System.out.println();
+            System.out.print("--------------------");
+            System.out.print("HOME PAGE");
+            System.out.println("--------------------");
+            System.out.println();
+            System.out.println("Enter (1): View All Details ");
+            System.out.println("Enter (2): Register New Athlete");
+            System.out.println();
+            System.out.print("Enter: ");
+            decisionOptionHomePage1 = input.nextInt();
+            input.nextLine();
+            if (decisionOptionHomePage1 > 0 && decisionOptionHomePage1 < 3) { //validate user training plan
+                validDecision = true;
+            } else
+                System.out.println("Please choose numbers (1-2) only");
+        }
+    }
+
+    void optionHomePage2() {
+        boolean validDecision = false;
+        while (!validDecision) {
+            System.out.println();
+            System.out.print("--------------------");
+            System.out.print("HOME PAGE");
+            System.out.println("--------------------");
+            System.out.println();
+            System.out.println("Enter (1): Register New Athlete");
+            System.out.println("Enter (2): Quit");
+            System.out.println();
+            System.out.print("Enter: ");
+            decisionOptionHomePage2 = input.nextInt();
+            input.nextLine();
+            if (decisionOptionHomePage2 > 0 && decisionOptionHomePage2 < 3) { //validate user training plan
+                validDecision = true;
+            } else
+                System.out.println("Please choose numbers (1-2) only");
+        }
+    }
+
     void askTrainingPLan() {
         boolean validTrainingPlan = false;
         while (!validTrainingPlan) {
@@ -252,26 +273,112 @@ class InputValidation {
                 validInput = true;
             } else {
                 System.out.println("Invalid input, please choose (yes/no) only...)");
-                continue;
             }
 
         }
     }
 
-    // INPUT NUMBER OF COMPETITION
+
     void numOfCompetition() {
-        System.out.print("How many competition do you want to enter? ");
-        this.numberOfCompetition = input.nextInt();
+        while (true) {
+            System.out.print("How many competition do you want to enter? ");
+            if (input.hasNextInt()) {
+                this.numberOfCompetition = input.nextInt();
+                input.nextLine(); // Clear the buffer
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                input.next(); // Consume the invalid input
+            }
+        }
     }
 
     void numOfPrivateCoaching() {
-        System.out.print("How many hours of private coaching do you want? ");
-        this.hoursOfPrivateCoaching = input.nextInt();
+        while (true) {
+            System.out.print("How many hours of private coaching do you want? ");
+            if (input.hasNextInt()) {
+                this.hoursOfPrivateCoaching = input.nextInt();
+                input.nextLine(); // Clear the buffer
+                if (hoursOfPrivateCoaching > 5) {
+                    System.out.println("You exceed to the maximum number of hours. Please input again: ");
+                } else if (hoursOfPrivateCoaching < 0) {
+                    System.out.println("Invalid input. Please enter a positive number.");
+                } else break;
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                input.next(); // Consume the invalid input
+
+            }
+        }
     }
 
+        void changeTrainingPlan () {
+            boolean validInput = false;
+            while (!validInput) {
+                System.out.print("Beginners cannot compete. Do you want to change training plan?");
+                decisionChangeTrainingPlan = input.nextLine();
+                if (decisionChangeTrainingPlan.equalsIgnoreCase("yes")) {
+                    decisionChangeTrainingPlan = "yes";
+                    validInput = true;
+                } else if (decisionChangeTrainingPlan.equalsIgnoreCase("no")) {
+                    decisionChangeTrainingPlan = "no";
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid input, please choose (yes/no) only...)");
+                }
+
+            }
+
+        }
+        void decisionEnterCompetition () {
+            boolean validInput = false;
+            while (!validInput) {
+                System.out.print("Do you want to enter competition? ");
+                decisionCompetition = input.nextLine();
+                if (decisionCompetition.equalsIgnoreCase("yes")) {
+                    decisionCompetition = "yes";
+                    validInput = true;
+                } else if (decisionCompetition.equalsIgnoreCase("no")) {
+                    decisionCompetition = "no";
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid input, please choose (yes/no) only...)");
+                }
+
+            }
+
+        }
 
 
+        //PRIVATE METHODS
 
+        private static boolean isValidMonth (String month){
+            String[] validMonths = {
+                    "january", "february", "march", "april", "may", "june",
+                    "july", "august", "september", "october", "november", "december"
+            };
+            for (String validMonth : validMonths) {
+                if (validMonth.equals(month)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private static int getDaysInMonth (String month){
+            return switch (month) {
+                case "january", "march", "may", "july", "august", "october", "december" -> 31;
+                case "april", "june", "september", "november" -> 30;
+                case "february" -> 28; // Ignoring leap years for simplicity
+                default -> 0; // Invalid month
+            };
+        }
+
+
+        private static boolean isValidName (String name){
+            return name != null && name.matches("[a-zA-Z ]+"); // Allow only letters and spaces
+        }
 
 }
 

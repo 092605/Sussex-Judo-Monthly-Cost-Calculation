@@ -3,7 +3,7 @@
 // METHODS: identifyAthleteWeightCategory () | compareWeightCategory ()
 
 class WeightCategory {
-    private final Athlete athlete;
+    final private Athlete athlete;
 
     public WeightCategory(Athlete athlete) {
         this.athlete = athlete; // Use the provided athlete instance
@@ -33,19 +33,13 @@ class WeightCategory {
     int compare_Weight_Category(int userCW) {
         double weight = athlete.getWeight();
 
-        switch (userCW) {
-            case 1:
-                return weight <= 66 ? 1 : 2;
-            case 2:
-                return (weight <= 73 && weight > 66) ? 1 : (weight < 66 ? 2 : 3);
-            case 3:
-                return (weight <= 81 && weight > 73) ? 1 : (weight < 73 ? 2 : 3);
-            case 4:
-                return (weight <= 90 && weight > 81) ? 1 : (weight < 81 ? 2 : 3);
-            case 5:
-                return (weight <= 100 && weight > 90) ? 1 : (weight < 90 ? 2 : 3);
-            default:
-                return weight > 100 ? 1 : 3;
-        }
+        return switch (userCW) {
+            case 1 -> weight <= 66 ? 1 : 2;
+            case 2 -> (weight <= 73 && weight > 66) ? 1 : (weight < 66 ? 2 : 3);
+            case 3 -> (weight <= 81 && weight > 73) ? 1 : (weight < 73 ? 2 : 3);
+            case 4 -> (weight <= 90 && weight > 81) ? 1 : (weight < 81 ? 2 : 3);
+            case 5 -> (weight <= 100 && weight > 90) ? 1 : (weight < 90 ? 2 : 3);
+            default -> weight > 100 ? 1 : 2;
+        };
     }
 }
