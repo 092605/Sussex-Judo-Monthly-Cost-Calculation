@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 //DEFINITION: This class gathers every single method in the package.
 //            Create a single method that create an application (called in Main class)
@@ -7,7 +6,6 @@ import java.util.Scanner;
 
 class Manager extends DisplayInfo {
 
-    Scanner Input = new Scanner(System.in);
     Athlete athlete = new Athlete();
     TrainingPlan trainingPlan = new TrainingPlan();
     PrivateCoaching privateCoaching = new PrivateCoaching();
@@ -15,7 +13,7 @@ class Manager extends DisplayInfo {
     WeightCategory weightCategory = new WeightCategory(athlete); // mainly used to get the Athlete weight category (name)
     InputValidation valid = new InputValidation();
 
-    private int choice1; //options in Home Page Phase 1
+
     private String athleteNameWeightCategory;
 
 
@@ -61,7 +59,6 @@ class Manager extends DisplayInfo {
                         valid.decisionEnterCompetition();
                         if (valid.getDecisionCompetition().equalsIgnoreCase("yes")) {
                             enterCompetition.addCompetition();
-                            change = false;
                             break;
                         }
                     }
