@@ -59,6 +59,7 @@ class Manager extends DisplayInfo {
                             enterCompetition.addCompetition();
                             break;
                         }
+                        else break;
                     }
 
                 }
