@@ -78,7 +78,7 @@
                         System.out.println("----------------------------------------");
                         System.out.println("Competition Weight Category Accepted!");
                         System.out.println("----------------------------------------");
-                        numOfCompetition(); // ask user for number of competition (0-no limit--but only 1 competition will be calculated in monthly cost, the rest will be upcoming and pending)
+                        inputNumCompetition(); // ask user for number of competition (0-no limit--but only 1 competition will be calculated in monthly cost, the rest will be upcoming and pending)
                         usersNumCompetition = getNumberOfCompetition(); // store user number of competition
                         changeCompetition = false; // exit loop for (change competition)
                         break;
@@ -128,7 +128,7 @@
                     System.out.println("----------------------------------------");
                     System.out.println("Competition Weight Category Accepted!");
                     System.out.println("----------------------------------------");
-                    numOfCompetition(); // the user will now proceed to input number of competition
+                    inputNumCompetition(); // the user will now proceed to input number of competition
                     usersNumCompetition = getNumberOfCompetition();
                     validDecisionChangeCompetitionCategory = true;
                     changeCompetition=false;

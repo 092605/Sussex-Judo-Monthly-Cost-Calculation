@@ -62,7 +62,7 @@ class TrainingPlan {
     void addTrainingPlan() {
 
         info.printTrainingPlan(); //display training plan info
-        valid.askTrainingPLan(); // user choose a training plan
+        valid.chooseTrainingPlan(); // user choose a training plan
         userTrainingPlan = valid.getTrainingPlan(); // store the training plan
         numberOfSessions();
         costTrainingPlan();

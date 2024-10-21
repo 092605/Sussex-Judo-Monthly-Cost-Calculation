@@ -31,7 +31,7 @@ class Manager extends DisplayInfo {
 
 
             //REGISTER NEW ATHLETE
-            athlete.athlete();
+            athlete.inputAthleteDetails();
             if (athlete.decisionRegisterAthlete.equalsIgnoreCase("no")) {
                 registerNewAthlete = false; //END
             } else {
@@ -42,9 +42,7 @@ class Manager extends DisplayInfo {
                     trainingPlan.addTrainingPlan(); //method for users to choose
 
                     // Enter competition
-
                     //for users who choose Beginner
-
                     if (trainingPlan.getUserTrainingPlan() == 1) {
                         valid.changeTrainingPlan();
                         if (valid.getDecisionChangeTrainingPlan().equalsIgnoreCase("no")) {
@@ -64,6 +62,7 @@ class Manager extends DisplayInfo {
                     }
 
                 }
+
                 privateCoaching.addPrivateCoaching();
                 displayPaymentDetails();
 
@@ -91,47 +90,61 @@ class Manager extends DisplayInfo {
 
     void displayPaymentDetails() {
         System.out.println();
-        System.out.print("--------------------");
-        System.out.print("Itemized Cost for the Month");
-        System.out.println("--------------------");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("               Itemized Cost for the Month         ");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.printf("| %-30s | $%.2f %n", "Training Plan Cost:", (double) trainingPlan.getCostTrainingPlan());
+        System.out.printf("| %-30s | $%.2f %n", "Competition Cost:", (double) enterCompetition.getCostCompetition());
+        System.out.printf("| %-30s | $%.2f %n", "Private Coaching Cost:", (double) privateCoaching.getCostPrivateCoaching());
+        System.out.println("-----------------------------------------------------------------");
+
+        double totalCost = trainingPlan.getCostTrainingPlan() +
+                enterCompetition.getCostCompetition() +
+                privateCoaching.getCostPrivateCoaching();
+
+        System.out.printf("| %-30s | $%.2f %n", "Total Monthly Cost:", totalCost);
+        System.out.println("-----------------------------------------------------------------");
         System.out.println();
-        System.out.println();
-        System.out.printf("Training Plan Cost: $%.2f %n", (double) trainingPlan.getCostTrainingPlan());
-        System.out.printf("Competition Cost: $%.2f %n", (double) enterCompetition.getCostCompetition());
-        System.out.printf("Private Coaching Cost: $%.2f %n", (double) privateCoaching.getCostPrivateCoaching());
-        System.out.println("--------------------");
-        System.out.printf("Total Monthly Cost: $%.2f %n", (double) (trainingPlan.getCostTrainingPlan() + enterCompetition.getCostCompetition() + privateCoaching.getCostPrivateCoaching()));
-        System.out.println("--------------------");
-        System.out.println();
-        System.out.printf("Cost for upcoming competitions: $%.2f %n", (double) enterCompetition.getPendingCostCompetition());
+        System.out.printf("| %-30s | $%.2f %n", "Cost for Upcoming Competitions:", (double) enterCompetition.getPendingCostCompetition());
     }
 
     void displayAllDetails() {
-        System.out.print("--------------------");
-        System.out.print("ALL DETAILS");
+        String weightCategory = (enterCompetition.getUserWeightCategory() == null) ? athleteNameWeightCategory : enterCompetition.getUserWeightCategory();
+        double weight = athlete.getWeight();
+
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("                          ALL DETAILS        ");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("                      --Athlete Details--   ");
+        System.out.println();
+        System.out.printf("| %-40s | %s%n", "Athlete Name", athlete.getName());
+        System.out.printf("| %-40s | %s (%.1f kg)%n", "Weight Category", weightCategory, weight);
+        System.out.printf("| %-40s | %s%n", "Date Registered", athlete.getDate());
+        System.out.printf("| %-40s | %s (%d session)%n", "Training Plan",
+                trainingPlan.getNameTrainingPlan(),
+                trainingPlan.getUsersNumberOfSession());
+        System.out.printf("| %-40s | %s%n", "Competition Weight Category",
+                (enterCompetition.getUsersCompetitionCategory() == null) ? "No competition weight category" : enterCompetition.getUsersCompetitionCategory());
+        System.out.printf("| %-40s | %d (%s)%n", "Number of competitions this month",
+                (enterCompetition.getUsersNumCompetition() > 0) ? 1 : 0,
+                (enterCompetition.getUsersNumCompetition() > 0) ? "2nd Saturday of the Month" : "");
+        System.out.printf("| %-40s | %d%n", "Upcoming Number of Competition",
+                (enterCompetition.getUsersNumCompetition() > 1) ? (enterCompetition.getUsersNumCompetition() - 1) : 0);
+        System.out.printf("| %-40s | %d hours%n", "Number of hours for Private Coaching",
+                privateCoaching.getUsersNumPrivateCoach() * 4);
+        System.out.println();
+        System.out.println("                  --Itemized Cost for The Month--");
+        System.out.println();
+        System.out.printf("| %-40s | $%.2f%n", "Training Plan Cost", (double) trainingPlan.getCostTrainingPlan());
+        System.out.printf("| %-40s | $%.2f%n", "Competition Cost", (double) enterCompetition.getCostCompetition());
+        System.out.printf("| %-40s | $%.2f%n", "Private Coaching Cost", (double) privateCoaching.getCostPrivateCoaching());
+        System.out.println("--------------------");
+        System.out.printf("| %-40s | $%.2f%n", "Total Monthly Cost", (double) (trainingPlan.getCostTrainingPlan() + enterCompetition.getCostCompetition() + privateCoaching.getCostPrivateCoaching()));
         System.out.println("--------------------");
         System.out.println();
-        System.out.println("          --Athlete Details--");
-        System.out.println();
-        System.out.println("Athlete Name:----------------------------" + athlete.getName());
-        System.out.println("Weight Category:-------------------------- " + ((enterCompetition.getUserWeightCategory() == null) ? athleteNameWeightCategory : enterCompetition.getUserWeightCategory()) + " (" + athlete.getWeight() + "kg" + ")");
-        System.out.println("Date Registered:-------------------------- " + athlete.getDate());
-        System.out.println("Training Plan:---------------------------- " + (trainingPlan.getNameTrainingPlan()) + "(" + trainingPlan.getUsersNumberOfSession() + " session" + " )");
-        System.out.println("Competition Weight Category:-------------- " + ((enterCompetition.getUsersCompetitionCategory() == null) ? "No competition weight category" : enterCompetition.getUsersCompetitionCategory()));
-        System.out.println("Number of competition this month:--------- " + ((enterCompetition.getUsersNumCompetition() > 0 ? (1 + " (2nd Saturday of the Month)") : 0)));
-        System.out.println("Upcoming Number of Competition:----------- " + ((enterCompetition.getUsersNumCompetition() > 1) ? (enterCompetition.getUsersNumCompetition() - 1) : 0));
-        System.out.println("Number of hours for Private Coaching:----- " + privateCoaching.getUsersNumPrivateCoach() * 4);
-        System.out.println();
-        System.out.println("          --Itemized Cost for The Month--");
-        System.out.println();
-        System.out.printf("Training Plan Cost: $%.2f %n", (double) trainingPlan.getCostTrainingPlan());
-        System.out.printf("Competition Cost: $%.2f %n", (double) enterCompetition.getCostCompetition());
-        System.out.printf("Private Coaching Cost: $%.2f %n", (double) privateCoaching.getCostPrivateCoaching());
-        System.out.println("--------------------");
-        System.out.printf("Total Monthly Cost: $%.2f %n", (double) (trainingPlan.getCostTrainingPlan() + enterCompetition.getCostCompetition() + privateCoaching.getCostPrivateCoaching()));
-        System.out.println("--------------------");
-        System.out.println();
-        System.out.printf("Cost for upcoming competitions: $%.2f %n", (double) enterCompetition.getPendingCostCompetition());
+        System.out.printf("| %-40s | $%.2f%n", "Cost for upcoming competitions", (double) enterCompetition.getPendingCostCompetition());
+
     }
 }
 

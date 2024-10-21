@@ -25,7 +25,7 @@ class PrivateCoaching {
     // Main method to add private coaching--can be called in Manager Class
     void addPrivateCoaching() {
         info.printPrivateCoaching(); //display info
-        valid.numOfPrivateCoaching();
+        valid.inputNumPrivateCoaching();
         System.out.println();
         usersNumPrivateCoach=valid.getHoursOfPrivateCoaching();
         costPrivateCoaching();

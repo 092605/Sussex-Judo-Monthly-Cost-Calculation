@@ -3,41 +3,40 @@ class DisplayInfo {
     //DEFINITION: This class handles the display of information -- print only
     //METHODS : trainingPlan() | weightCategory () | competitionDetails () | privateCoaching ()
 
-    public void printTrainingPlan(){
-        System.out.print("--------------------");
-        System.out.print("TRAINING PLAN DETAILS");
-        System.out.println("--------------------");
+    public void printTrainingPlan() {
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("                   TRAINING PLAN DETAILS     ");
+        System.out.println("-----------------------------------------------------------------");
         System.out.println();
-        System.out.println("Enter 1: ");
-        System.out.println("BEGINNER (2 session per week): " + "$" + 25.00);
-        System.out.println("Enter 2: ");
-        System.out.println("INTERMEDIATE (3 session per week): " + "$" + 30.00 );
-        System.out.println("Enter 3: ");
-        System.out.println("ELITE (5 session per week): " + "$" + 35.00  );
+
+        System.out.printf("| %-5s | %-20s | %-20s | %-10s |%n", "Enter", "Plan", "Number of Sessions", "Cost");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.printf("| %-5s | %-20s | %-20s | $%-9.2f |%n", "  1", "BEGINNER", "2 sessions/week", 25.00);
+        System.out.printf("| %-5s | %-20s | %-20s | $%-9.2f |%n", "  2", "INTERMEDIATE", "3 sessions/week", 30.00);
+        System.out.printf("| %-5s | %-20s | %-20s | $%-9.2f |%n", "  3", "ELITE", "5 sessions/week", 35.00);
+        System.out.println("-----------------------------------------------------------------");
         System.out.println();
         System.out.println("NOTE:");
         System.out.println("You'll have 4 weeks in a month--");
         System.out.println();
     }
 
-    public void printWeightCategory(){
+    public void printWeightCategory() {
         System.out.println();
-        System.out.print("--------------------");
-        System.out.print("Weight Category (maximum)");
-        System.out.println("--------------------");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("                COMPETITION WEIGHT CATEGORY (MAX)     ");
+        System.out.println("-----------------------------------------------------------------");
         System.out.println();
-        System.out.println("Enter 1: ");
-        System.out.println("Flyweight: up to 66kg");
-        System.out.println("Enter 2: ");
-        System.out.println("Lightweight: up to 73kg");
-        System.out.println("Enter 3: ");
-        System.out.println("Light-Middleweight: up to 81kg");
-        System.out.println("Enter 4: ");
-        System.out.println("Middleweight: up to 90kg");
-        System.out.println("Enter 5: ");
-        System.out.println("Light-Heavyweight: up to 100kg");
-        System.out.println("Enter 6: ");
-        System.out.println("Heavyweight: more than 100kg");
+
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "Enter", "Category", "Maximum Weight");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "  1", "Flyweight", "up to 66kg");
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "  2", "Lightweight", "up to 73kg");
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "  3", "Light-Middleweight", "up to 81kg");
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "  4", "Middleweight", "up to 90kg");
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "  5", "Light-Heavyweight", "up to 100kg");
+        System.out.printf("| %-5s | %-25s | %-20s |%n", "  6", "Heavyweight", "more than 100kg");
+        System.out.println("-----------------------------------------------------------------");
         System.out.println();
     }
 

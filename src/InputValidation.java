@@ -123,7 +123,7 @@ class InputValidation {
             // Check if the input is a valid double
             if (input.hasNextDouble()) {
                 validWeight = input.nextDouble();
-                input.nextLine(); // Clear the buffer
+                input.nextLine();
                 // Check if the weight is a positive value
                 if (validWeight > 0) {
                     break;
@@ -133,7 +133,7 @@ class InputValidation {
             } else {
                 // Handle the case where input is not a valid double
                 System.out.println("Invalid input. Please enter a numeric value for weight.");
-                input.next(); // Consume the invalid input
+                input.next();
             }
         }
     }
@@ -157,7 +157,7 @@ class InputValidation {
             System.out.print("Enter day: ");
             if (input.hasNextInt()) {
                 validDay = input.nextInt();
-                input.nextLine(); // Clear the buffer
+                input.nextLine();
                 //check specific number of specific month 30 | 31 days
                 if (validDay >= 1 && validDay <= getDaysInMonth(validMonth)) {
                     break; // Valid day entered
@@ -175,7 +175,7 @@ class InputValidation {
             System.out.print("Enter year: ");
             if (input.hasNextInt()) {
                 validYear = input.nextInt();
-                input.nextLine(); // Clear the buffer
+                input.nextLine();
                 if (validYear > 0) {
                     break; // Valid year entered
                 } else {
@@ -194,9 +194,9 @@ class InputValidation {
         boolean validDecision = false;
         while (!validDecision) {
             System.out.println();
-            System.out.print("--------------------");
-            System.out.print("HOME PAGE");
-            System.out.println("--------------------");
+            System.out.println("-----------------------------------------------------------------");
+            System.out.println("                           HOME PAGE     ");
+            System.out.println("-----------------------------------------------------------------");
             System.out.println();
             System.out.println("Enter (1): View All Details ");
             System.out.println("Enter (2): Register New Athlete");
@@ -215,9 +215,9 @@ class InputValidation {
         boolean validDecision = false;
         while (!validDecision) {
             System.out.println();
-            System.out.print("--------------------");
-            System.out.print("HOME PAGE");
-            System.out.println("--------------------");
+            System.out.println("-----------------------------------------------------------------");
+            System.out.println("                           HOME PAGE     ");
+            System.out.println("-----------------------------------------------------------------");
             System.out.println();
             System.out.println("Enter (1): Register New Athlete");
             System.out.println("Enter (2): Quit");
@@ -232,7 +232,7 @@ class InputValidation {
         }
     }
 
-    void askTrainingPLan() {
+    void chooseTrainingPlan() {
         boolean validTrainingPlan = false;
         while (!validTrainingPlan) {
             System.out.print("Choose a Training Plan: ");
@@ -279,7 +279,7 @@ class InputValidation {
     }
 
 
-    void numOfCompetition() {
+    void inputNumCompetition() {
         while (true) {
             System.out.print("How many competition do you want to enter? ");
             if (input.hasNextInt()) {
@@ -293,12 +293,12 @@ class InputValidation {
         }
     }
 
-    void numOfPrivateCoaching() {
+    void inputNumPrivateCoaching() {
         while (true) {
             System.out.print("How many hours of private coaching do you want? ");
             if (input.hasNextInt()) {
                 this.hoursOfPrivateCoaching = input.nextInt();
-                input.nextLine(); // Clear the buffer
+                input.nextLine();
                 if (hoursOfPrivateCoaching > 5) {
                     System.out.println("You exceed to the maximum number of hours. Please input again: ");
                 } else if (hoursOfPrivateCoaching < 0) {
@@ -306,7 +306,7 @@ class InputValidation {
                 } else break;
             } else {
                 System.out.println("Invalid input. Please enter a numeric value.");
-                input.next(); // Consume the invalid input
+                input.next(); //
 
             }
         }

@@ -41,11 +41,11 @@ public class Athlete extends InputValidation {
     }
 
     //method to input personal details of an Athlete (name, weight, date registered)
-    public void athlete() {
-            System.out.println();
-            System.out.print("--------------------");
-            System.out.print("ATHLETE REGISTRAR");
-            System.out.println("--------------------");
+    public void inputAthleteDetails() {
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("                      ATHLETE REGISTRAR     ");
+        System.out.println("-----------------------------------------------------------------");
         System.out.println();
 
             decisionRegisterAthlete(); //stores yes/no
